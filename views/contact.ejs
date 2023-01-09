@@ -1,0 +1,267 @@
+	<?php
+session_start();
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+if(isset($_POST['gui'])){
+    $email=$_POST['email'];
+    $ten=$_POST['name'];
+    $mess=$_POST['mess'];
+    $alo='Mail từ khách hàng';
+include "PHPMailer/src/PHPMailer.php";
+include "PHPMailer/src/Exception.php";
+include "PHPMailer/src/OAuth.php";
+include "PHPMailer/src/POP3.php";
+include "PHPMailer/src/SMTP.php";
+
+
+  
+  $mail = new PHPMailer(true);
+ // print_r($mail);
+  try {
+    //Server settings
+    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'huykhuc002@gmail.com';                 // SMTP username
+    $mail->Password = 'vjrmyxpifylzwdtc';                           // SMTP password
+    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587;                                    // TCP port to connect to
+ 
+    //Recipients
+    $mail->setFrom('huykhuc002@gmail.com', 'Mailer');
+    $mail->addAddress($email, 'Admin');     // Add a recipient
+              // Name is optional
+    //$mail->addReplyTo('info@example.com', 'Information');
+    //$mail->addCC('cc@example.com'); //gui them 1 bang copy
+   // $mail->addBCC('bcc@example.com');
+ 
+    //Attachments
+   // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments them file anh hoac vd
+   // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+ 
+    //Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'mail user';
+    $mail->Body    = 'Tên:'.$ten.'<br>Nội dung phản hồi:'.$mess;
+  //  $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+ 
+    $mail->send();
+   $message = "Gửi mail thành công";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+} catch (Exception $e) {
+    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+}
+}
+
+ ?>
+<!DOCTYPE html>
+<html lang="vi">
+	<head>
+		<meta charset="utf-8">
+		<title>Liên Hệ</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="themes/css/bootstrappage.css" rel="stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="themes/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="themes/css/font-awesome.min2.css"> -->
+	<link rel="stylesheet" type="text/css" href="themes/css/font-awesome.min3.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+		<!-- global styles -->
+		<link href="themes/css/flexslider.css" rel="stylesheet"/>
+		<link href="themes/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="themes/js/jquery-1.7.2.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>				
+		<script src="themes/js/superfish.js"></script>	
+		<script src="themes/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>		
+		<div id="top-bar" class="container">
+			<div class="row">
+				<div class="span4">
+					<form method="GET" class="search_form" action="products2.php">
+						<div class="input-group">
+							<input type="text" name="tukhoa" class="search-query form-control input-group" Placeholder="My Trees.">
+							<span class="input-group-btn">
+								<input span type="submit" name="btn-search" id="btn-search" class="btn btn-primary rounded-circle btnpro" value="Search" >
+								
+								
+								</span></span>
+							</span>
+							
+						</div>
+					</form>
+				</div>
+				<div class="span8">
+					<div class="account pull-right">
+						<ul class="user-menu">				
+							
+							<?php
+							if (strcmp($_SESSION['name'], 'User')==0) {
+
+								echo '<li  ><a style="color: #FE2E64"  href="register.php">
+								'.$_SESSION['name'].' </a></li>';
+							}else{
+                           echo '<li ><a style="color: #FE2E64"  href="customer.php">
+								'.$_SESSION['name'].' </a></li>';
+							}
+
+
+							 ?>
+							<?php
+							if (strcmp($_SESSION['name'], 'User')==0) {
+
+								echo '<li  ><a  href="register.php">
+								Giỏ hàng </a></li>';
+							}else{
+                           echo '<li ><a href="cart.php">
+								Giỏ hàng </a></li>';
+							}
+
+
+							 ?>
+							<li><a href="checkout.php">Thanh toán</a></li>					
+							<li><a href="register.php">Đăng nhập</a></li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">				
+					<a href="index.php" class="logo pull-left"><h4 class="title">Htrees</h4> </a>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li><a href="./products.php">Danh sách sản phẩm</a>					
+							<li><a href="contact.php">Liên Hệ</a>				
+									</li>		
+						</ul>
+					</nav>
+				</div>
+			</section>									
+			
+			<section class="header_text sub">
+			<img class="pageBanner" src="themes/images/carousel/ab1.jpg" alt="New products" >
+				<h4><span>Liên hệ với chúng tôi</span></h4>
+			</section>
+			<section class="main-content">				
+				<div class="row">				
+					<div class="span5">
+						<div>
+							<h5>Thông tin liên hệ</h5>
+							<p>
+							<strong>Địa chỉ:</strong>&nbsp;Tổ 22 Khái tây 1<br>	
+							<strong>Điện thoại:</strong>&nbsp;0934754566<br>
+							
+							<strong>Email:</strong>&nbsp;<a href="#">huykhuc002@gmail.com</a>								
+							</p>
+							<br/>
+							<h5>Cơ sở 2</h5>
+							<p>
+							<strong>Địa chỉ:</strong>&nbsp;Trường Đại Học Việt Hàn<br>	
+							<strong>Điện thoại:</strong>&nbsp;0934754566<br>
+							
+							<strong>Email:</strong>&nbsp;<a href="#">kthuy.20it10@vku.udn.vn</a>					
+							</p>
+						</div>
+					</div>
+					<div class="span7">
+						<p>Để lại tin nhắn để giúp chúng tôi có thể phục vụ bạn tốt hơn</p>
+						<form method="post" action="contact.php">
+							<fieldset>
+								<div class="clearfix">
+									<label for="name"><span>Tên:</span></label>
+									<div class="input">
+										<input tabindex="1" size="18" id="name" name="name" type="text" value="" class="input-xlarge" placeholder="Họ Tên">
+									</div>
+								</div>
+								
+								<div class="clearfix">
+									<label for="email"><span>Email:</span></label>
+									<div class="input">
+										<input tabindex="2" size="25" id="email" name="email" type="text" value="" class="input-xlarge" placeholder="Địa chỉ Email">
+									</div>
+								</div>
+								
+								<div class="clearfix">
+									<label for="message"><span>Tin nhắn:</span></label>
+									<div class="input">
+										<textarea tabindex="3" class="input-xlarge" id="message" name="mess" name="body" rows="7" placeholder=" "></textarea>
+									</div>
+								</div>
+								
+								<div class="actions">
+									<?php
+                                         if (strcmp($_SESSION['name'], 'User')==0) {
+                                         	echo '<input class="btn btn-primary pull-right" type="submit" value="Gửi Mail" name="gui" disabled alt="Chưa đăng nhập">';
+                                         }else{
+                                         	echo '<input class="btn btn-primary pull-right" type="submit" value="Gửi Mail" name="gui" >';
+                                         }?>
+								</div>
+							</fieldset>
+						</form>
+					</div>				
+				</div>
+			</section>		
+			<section class="google_map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6371611558734!2d106.6790126141825!3d10.762421762396446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1c06f4e1dd%3A0x43900f1d4539a3d!2sUniversity+of+Science%2C+Downtown+Campus!5e0!3m2!1sen!2s!4v1524385254524" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+			</section>
+			<section style="background-color: #857474;" id="footer-bar">
+				<div class="row">
+					<div class="span3">
+						<h4>Điều Hướng</h4>
+						<ul class="nav">
+							<li><a href="./index.php">Trang chủ</a></li>  						
+							<li><a href="./cart.php">Giỏ hàng</a></li>
+							<li><a href="./contact.php">Liên hệ</a></li>
+							<li><a href="./register.php">Đăng nhập</a></li>							
+						</ul>					
+					</div>
+					<div class="span4">
+						<h4>My Account</h4>
+						<ul class="nav">
+							<li><a href="customer.php">Tài khoản của tôi</a></li>
+
+							<li><a href="products.php">Danh sách sản phẩm</a></li>
+							
+							<!-- <li><a href="#">Làm mới</a></li> -->
+						</ul>
+					</div>
+					<div class="span5">
+						<p class="logo"><!-- <img src="themes/images/logo.png" class="site_logo" alt=""> --><h4>Htrees</h4></p>
+						<p style="color: white;">Website chúng tôi chuyên cung cấp các sản phẩm chất lượng có uy tín và mới nhất trên thị trường hiện nay
+							<br/>Hãy ghé thăm trang web của chúng tôi và đừng bỏ lỡ các sản phẩm mới nhé!</p>
+							<div style="margin-left: 60px;">
+								<a href="#" class="button">
+									<i class="fab fa-facebook-f fa-lg"></i>
+								</a>
+								<a href="#" class="button">
+									<i class="fab fa-twitter fa-lg"></i>
+								</a>
+								<a href="#" class="button">
+									<i class="fab fa-instagram fa-lg"></i>
+								</a>
+							</div>
+							
+						</div>					
+					</div>	
+				</section>
+				<section id="copyright">
+					<span>Copyright 2021 Cây cảnh Thừa Huy</span>
+				</section>
+		</div>
+		<script src="themes/js/common.js"></script>
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>
+    </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		
+		<!-- bootstrap -->
+		<link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
+		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="/themes/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link rel="stylesheet" type="text/css" href="/themes/css/font-awesome.min.css">
+		<link href="/themes/css/main.css" rel="stylesheet"/>
+		<link href="/themes/css/jquery.fancybox.css" rel="stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="/themes/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/themes/css/font-awesome.min2.css"> -->
+	<link rel="stylesheet" type="text/css" href="/themes/css/font-awesome.min3.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+		<!-- scripts -->
+		<script src="/themes/js/jquery-1.7.2.min.js"></script>
+		<script src="/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="/themes/js/superfish.js"></script>	
+		<script src="/themes/js/jquery.scrolltotop.js"></script>
+		<script src="/themes/js/jquery.fancybox.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>		
+		<div id="top-bar" class="container">
+			<div class="row">
+				<div class="span4">
+					<form method="GET" class="search_form" action="/search">
+						<div class="input-group">
+							<input type="text" name="key" class="search-query form-control input-group" Placeholder="My Trees.">
+							<span class="input-group-btn">
+								<input span type="submit" name="btn-search" id="btn-search" class="btn btn-primary rounded-circle btnpro" value="Search" >
+								
+								
+								</span></span>
+							</span>
+							
+						</div>
+					</form>
+				</div>
+				<div class="span8">
+					<div class="account pull-right">
+						<ul class="user-menu">				
+							<% if (typeof username ==='undefined') { %> 
+								<li><a href="/login">Đăng nhập </a></li>	
+							<%  } else { %> 
+							<li><a href="/user"><%= username %> </a></li>
+							<li><a href="/cart"> Giỏ hàng </a></li>
+					
+							<% 	} %> 				
+					
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">				
+					<a href="/home" class="logo pull-left"><h4 class="title">Htrees</h4> </a>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li><a href="/products">Danh Sách Cây</a>	
+												
+								
+							
+						</ul>
+					</nav>
+				</div>
+			</section>				
+			<section class="header_text sub">
+			<img class="pageBanner" src="https://res.cloudinary.com/thua-huy/image/upload/v1662990594/Htrees/carousel/abd_uypbgn.jpg"  alt="New products" >
+				<h4><span>Chi tiết sản phẩm</span></h4>
+			</section>	

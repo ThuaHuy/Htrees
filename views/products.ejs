@@ -1,0 +1,48 @@
+<% if ( typeof username === 'undefined') { %>
+	 
+    <%- include("partials/header"); %>
+<% } else { %>
+	<%- include("partials/header",{username: username}); %>
+	<% } %>
+	<section class="main-content">
+		<div class="block">	
+							
+			<br/>
+			<ul class="nav nav-list below">
+				<li class="nav-header">Loại Cây</li>
+				<% category.forEach(element => { %>
+				<li><a href="/category/<%= element._id %> "><%= element.name %></a></li>
+				<% }); %> 
+			
+			</ul>
+		</div>
+		
+		<div class="row">						
+			<div class="span9">								
+				<ul class="thumbnails listing-products">
+					<% products.forEach(element => { %>
+						
+					
+					<li class="span3">
+						<div class="product-box">
+							<span class="sale_tag"></span>												
+							<a href="/product_detail/<%= element._id %>"><img style="background-color: white;" alt="" src="<%= element.img %>" width="255px" height="255px"></a><br/>
+							<a href="/product_detail/<%= element._id %>" class="title"> <%= element.name %> </a><br/>
+							
+							<a href="/product_detail/<%= element._id %>"><p class="price"><%= element.price %>đ </p></a>
+							
+						</div>
+					</li>
+					<% }); %> 
+				</ul>	
+											
+				
+					
+	</div>
+		
+
+	</div>
+	
+	
+</section>
+<%- include("partials/footer2") %> 

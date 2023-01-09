@@ -1,0 +1,121 @@
+<%- include("admin_partials/header2") %> 
+    <div class="container mt-5">
+      <div class="row tm-content-row">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div class="tm-product-table-container">
+              <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+                  <tr>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">TÊN SẢN PHẨM</th>
+                    <th scope="col">BẢO HÀNH</th>
+                    <th scope="col">XUẤT XỨ</th>
+                    <th scope="col">CÂN NẶNG</th>
+                    <th scope="col">GIÁ TIỀN</th>
+                    <th scope="col">ẢNH</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% product.forEach(element => { %>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td class="tm-product-name"><%= element.name %></td>
+                    <td><%= element.insurance %></td>
+                    <td><%= element.origin %></td>
+                    <td><%= element.weight %></td>
+                    <td><%= element.price %></td>
+                    <td><%= element.img %></td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+             <%   }); %> 
+                </tbody>
+              </table>
+            </div>
+            <!-- table container -->
+            <a
+              href="/admin/add_product"
+              class="btn btn-primary btn-block text-uppercase mb-3">Thêm sản phẩm mới</a>
+            <button class="btn btn-primary btn-block text-uppercase">
+              Xóa sản phẩm đã chọn
+            </button>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+            <h2 class="tm-block-title">Danh mục sản phẩm</h2>
+            <div class="tm-product-table-container">
+              <table class="table tm-table-small tm-product-table">
+                <tbody>
+                  <% category.forEach(element => { %>           
+                  <tr>
+                    <td class="tm-product-name"><%= element.name %> </td>
+                    <td class="text-center">
+                      <a href="/admin/del_category/<%= element._id %>" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <% }); %>  
+                </tbody>
+              </table>
+            </div>
+            <!-- table container -->
+            <button type="button" class="btn btn-primary btn-block text-uppercase mb-3"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+             Thêm danh mục mới
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Danh mục mới</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/admin/add_category" method="post">
+                      <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Id</label>
+                        <input type="text" class="form-control" id="recipient-name" placeholder="_id" disabled>
+                      </div>
+                      <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Tên danh mục:</label>
+                        <textarea class="form-control" id="message-text" name="new_category"></textarea>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                      </div>
+                    </form>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="tm-footer row tm-mt-small">
+      <div class="col-12 font-weight-light">
+        <p class="text-center text-white mb-0 px-4 small">
+          Copyright &copy; <b>2022</b> All rights reserved. 
+          
+          Design: <a rel="nofollow noopener" href="https://www.facebook.com/huy.khuc.752" class="tm-footer-link">Thừa Huy</a>
+      </p>
+      </div>
+    </footer>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script>
+  
+    </script>
+  </body>
+</html>

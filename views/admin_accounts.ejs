@@ -1,0 +1,140 @@
+<%- include("admin_partials/header3") %> 
+      <div class="container mt-5">
+        <div class="row tm-content-row">
+          <div class="col-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+              <h2 class="tm-block-title">Danh sách tài khoản</h2>
+              <p class="text-white">Tài khoản</p>
+              <form action="/admin/account" method="post">
+              <select name="id" class="custom-select">
+                <% user.forEach(element => {%> 
+               <option value="<%= element._id %>"><%= element.username %></option>
+                  <%   }); %>               
+              </select>
+              <button style="width: 10%;transform: translateX(900%);" type="submit" class="btn btn-primary btn-block text-uppercase">
+                Chọn
+              </button>
+            </form>
+            </div>
+          </div>
+        </div>
+        <!-- row -->
+        <% if (typeof user_info != "undefined") { %> 
+          <div class="row tm-content-row">
+          <div class="tm-block-col tm-col-avatar">
+            <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+              <h2 class="tm-block-title">Avatar</h2>
+              <div class="tm-avatar-container">
+                <img
+                  src="<%= info.avatar %>"
+                
+                  class="tm-avatar img-fluid mb-4"
+                />
+                <a href="#" class="tm-avatar-delete-link">
+                  <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+          <div class="tm-block-col tm-col-account-settings">
+            <div class="tm-bg-primary-dark tm-block tm-block-settings">
+              <h2 class="tm-block-title">Thông tin tài khoản</h2>
+              <form action="/admin/update_account" method="post" class="tm-signup-form row">
+                <input type="hidden" name="id" value="<%= user_info._id %>">
+                <div class="form-group col-lg-6">
+                  <label for="name">Tài khoản</label>
+                  <input
+                    value="<%= user_info.username %>"
+                    id="name"
+                    name="name"
+                    type="text"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    class="form-control validate"
+                    value="<%= info.email %> "
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="password2">Chức năng</label>
+                  <input
+                    value="<%= user_info.permission %>"
+                    id="password2"
+                    name="permission"
+                    type="text"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="password">Mật khẩu</label>
+                  <input
+                    value="<%= user_info.password %>"
+                    id="password"
+                    name="password"
+                    type="text"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="password2">Số điện thoại</label>
+                  <input
+                    id="password2"
+                    name="phone"
+                    type="text"
+                    class="form-control validate"
+                    value="<%= info.phone %> "
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label class="tm-hide-sm">&nbsp;</label>
+                  <button
+                    type="submit"
+                    style="width: 100%;"
+                    class="btn btn-primary btn-block text-uppercase"
+                  >
+                    Cập nhật thông tin
+                  </button>
+                </div>
+              </form>
+                <div class="col-12">
+                  <a href="/del_account/<%= user_info._id %>">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block text-uppercase"
+                  >
+                    Xóa tài khoản
+               
+                  </button>
+                </a>
+                  
+                </div>
+            
+            </div>
+          </div>
+        </div>
+     <%   } %> 
+      </div>
+      <footer class="tm-footer row tm-mt-small">
+        <div class="col-12 font-weight-light">
+          <p class="text-center text-white mb-0 px-4 small">
+            Copyright &copy; <b>2022</b> All rights reserved. 
+            
+            Design: <a rel="nofollow noopener" href="https://www.facebook.com/huy.khuc.752" class="tm-footer-link">Thừa Huy</a>
+        </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+  </body>
+</html>

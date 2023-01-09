@@ -1,0 +1,226 @@
+<% if ( typeof username === 'undefined') { %>
+	 
+    <%- include("partials/header2"); %>
+<% } else { %>
+	<%- include("partials/header2",{username: username}); %>
+	<% } %>
+				<h4><span>Chi tiết sản phẩm</span></h4>
+			
+			<section class="main-content">				
+				<div class="row">						
+					<div class="span9">
+						<div class="row">
+							<div class="span4">
+								<a href="<%=detail.img%> " class="thumbnail" data-fancybox-group="group1" title="Description 1"><img style="height: 255px; width: 255px;" alt="" src="<%= detail.img %>"></a>												
+								<ul class="thumbnails small">								
+									<li class="span1">
+										<a href="<%= detail.img1 %>" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="<%= detail.img1 %>" alt=""></a>
+									</li>								
+									<li class="span1">
+										<a href="<%= detail.img2 %>" class="thumbnail" data-fancybox-group="group1" title="Description 3"><img src="<%= detail.img2 %>" alt=""></a>
+									</li>													
+									<li class="span1">
+										<a href="<%= detail.img3 %>" class="thumbnail" data-fancybox-group="group1" title="Description 4"><img src="<%= detail.img3 %>" alt=""></a>
+									</li>
+									<li class="span1">
+										<a href="<%= detail.img4 %>" class="thumbnail" data-fancybox-group="group1" title="Description 5"><img src="<%= detail.img4 %>" alt=""></a>
+									</li>
+								</ul>
+							</div>
+							<div class="span5">
+								<address>
+									<strong>Tên cây:</strong> <span><%= detail.name %></span><br>
+									<strong>Loại cây:</strong> <span><%= category_product %></span><br>		
+								</address>									
+								<h4><strong>Giá:<%= detail.price %>đ</strong></h4>
+							</div>
+							<div class="span5">
+								<form class="form-inline" method="post" action="/cart">
+									<p>&nbsp;</p>
+									<label>SL:</label>
+									<input type="text" class="span1" name="quantity" required>
+									<input type="hidden" name="productId" value="<%= detail.id %>">
+									<% if (typeof username ==='undefined') { %> 
+										<input class="btn btn-inverse" type="submit" value="Thêm vào giỏ" name="addcart" disabled alt="Chưa đăng nhập">	
+									<%  } else { %> 
+									<input class="btn btn-inverse" type="submit" value="Thêm vào giỏ" name="addcart"  alt="Chưa đăng nhập">
+									<% 	} %> 
+									
+								</form>
+							</div>							
+						</div>
+						<div class="row">
+							<div class="span9">
+								<ul class="nav nav-tabs" id="myTab">
+									<li class="active"><a href="#home">Miêu tả</a></li>
+									<li class=""><a href="#profile">Thông tin sản phẩm</a></li>
+								</ul>							 
+								<div class="tab-content">
+									<div class="tab-pane active" id="home"><%= detail.description %> </div>
+									<div class="tab-pane" id="profile">
+										<table class="table table-striped shop_attributes">	
+											<tbody>
+												<tr class="">
+													<th>Tên:</th>
+													<td><%= detail.name %></td>
+												</tr>		
+												<tr class="alt">
+													<th>Bảo hành:</th>
+													<td><%= detail.insurance %></td>
+												</tr>
+												<tr class="">
+													<th>Trọng lượng:</th>
+													<td><%= detail.weight %></td>
+												</tr>
+												
+												<tr class="">
+													<th>Xuất xứ:</th>
+													<td><%= detail.origin %></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>							
+							</div>
+
+							<div class="span9">	
+								<br>
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><strong>Sản phẩm</strong> ngẫu nhiên</span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel-2" class="carousel slide">
+									<div class="carousel-inner">
+										<% productRandom.forEach(element => {%> 
+											<% if (count%3 == 0 ) { %>
+												<% if (count == 0) { %>
+										<div class="active item">
+											<% } else { %>
+												<div class="item">
+													<% 	} %> 
+											<ul class="thumbnails">												
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>												
+														<a href="/product_detail/<%= element._id %>"><img style="background-color: white;" alt="" src="<%= element.img %>" width="255px" height="255px"></a><br/>
+														<a href="/product_detail/<%= element._id %>" class="title"> <%= element.name %> </a><br/>
+														
+														<a href="/product_detail/<%= element._id %>"><p class="price"><%= element.price %>đ</p></a>
+														
+													</div>
+												</li>
+												<% count++ %> 
+												<% } else { %>
+													<li class="span3">
+														<div class="product-box">
+															<span class="sale_tag"></span>												
+															<a href="/product_detail/<%= element._id %>"><img style="background-color: white;" alt="" src="<%= element.img %>" width="255px" height="255px"></a><br/>
+															<a href="/product_detail/<%= element._id %>" class="title"> <%= element.name %> </a><br/>
+															
+															<a href="/product_detail/<%= element._id %>"><p class="price"><%= element.price %>đ</p></a>
+															
+														</div>
+													</li>												
+														<% count++; %> 
+														<% if (count%3 == 0) {%> 
+														</ul>
+													</div>
+															<% } %> 
+													<% } %> 
+										<% }); %> 
+									</div>							
+								</div>	
+								</div>
+							</div>
+						</div>
+					<div class="span3 col">
+						<div class="block">	
+							
+							<br/>
+							<ul class="nav nav-list below">
+								<li class="nav-header">Loại Cây</li>
+								<% category.forEach(element => { %>
+								<li><a href="/category/<%= element._id %> "><%= element.name %></a></li>
+								<% }); %> 
+							
+							</ul>
+						</div>
+						<div class="block">
+							<h4 class="title">
+								<span class="pull-left"><span class="text">Cùng loại</span></span>
+								<span class="pull-right">
+									<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+								</span>
+							</h4>
+							<div id="myCarousel" class="carousel slide">
+								<div class="carousel-inner">
+									<% productTooCategory.forEach(element => {%> 
+									  <% if (count1 == 0) {%> 
+										<div class="active item">
+											<%  } else {%> 
+										<div class="item">
+											<% } %> 
+								
+											<ul class="thumbnails listing-products">
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>												
+														<a href="/product_detail/<%= element._id %>"><img style="width: 255px; height: 255px;" alt="" src="<%= element.img %> "></a><br/>
+														<a href="/product_detail/<%= element._id %>"><%= element.name %> </a><br/>
+														<a href="/product_detail/<%= element._id %>">
+
+														<p class="price"><%= element.price %> </p></a>
+												
+													</div>
+												</li>
+											</ul>
+										</div>
+										<% count1++; %> 
+									
+										<%}); %> 
+									
+								</div>
+							</div>
+						</div>
+						<div class="block">								
+							<h4 class="title"><strong>Cây</strong> mới</h4>		
+												
+							<ul class="small-product">
+								<li>
+									<a href="/product_detail/<%= newProduct._id %>">
+										<img src="<%= newProduct.img %>">
+									</a>
+									<a href="/product_detail/<%= newProduct._id %>"><%= newProduct.name %></a>
+									
+								</li>
+							
+								 
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>			
+				<%- include("partials/footer3") -%> 
+					<script>
+			$(function () {
+				$('#myTab a:first').tab('show');
+				$('#myTab a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+				})
+			})
+			$(document).ready(function() {
+				$('.thumbnail').fancybox({
+					openEffect  : 'none',
+					closeEffect : 'none'
+				});
+				
+				$('#myCarousel-2').carousel({
+                    interval: 2500
+                });								
+			});
+		</script>
+		</body>
+		</html>

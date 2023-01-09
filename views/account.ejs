@@ -1,0 +1,86 @@
+
+						<%- include("partials/header"); -%>
+	
+						<h4><span>Đăng nhập và đăng kí</span></h4>
+					</section>			
+					<section class="main-content">				
+						<div class="row">
+							<div class="span5">					
+								<h4 class="title"><span class="text"><strong>Đăng</strong> nhập</span></h4>
+								<form action="/login" method="post">
+									<input type="hidden" name="next" value="/">
+									<fieldset>
+										<div class="control-group">
+											<label class="control-label">Tên đăng nhập</label>
+											<div class="controls">
+												<input type="text" placeholder="Nhập tài khoản" id="username" class="input-xlarge" name="username" required>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Mật khẩu</label>
+											<div class="controls">
+		
+												<input type="password" placeholder="Nhập mật khẩu" id="password" class="input-xlarge" name="password" required>
+											</div>
+										</div>
+										<label>
+											<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Ghi nhớ mật khẩu
+										</label>
+										<div class="control-group">
+											<input tabindex="3" class="btn btn-primary large" type="submit" name="login" id="submit"  value="Đăng nhập">
+											
+										
+											
+										</div>
+									</fieldset>
+								</form>	<a href="register2.php" ><button class="btn btn-primary large" >Quên mật khẩu</button></a>		
+							</div>
+							<div class="span7">					
+								<h4 class="title"><span class="text"><strong>Đăng kí</strong> Form</span></h4>
+								<form action="/signup" method="post" class="form-stacked">
+									<fieldset>
+										<div class="control-group">
+											<label class="control-label">Tên đăng nhập</label>
+											<div class="controls">
+												<input type="text" placeholder="Nhập tên đăng nhập" class="input-xlarge"
+												id="username1" name="username" required>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Họ và tên</label>
+											<div class="controls">
+												<input type="text" placeholder="Nhập họ và tên" class="input-xlarge"
+												id="username1" name="name" required>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Địa chỉ email</label>
+											<div class="controls">
+												<input type="text" placeholder="Nhập 123@gmail.com" class="input-xlarge" id="email1" name="email" required>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Số DT</label>
+											<div class="controls">
+												<input type="text" placeholder="09xxxxx" class="input-xlarge" id="email1" name="phone" required>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Mật khẩu:</label>
+											<div class="controls">
+												<input type="password" placeholder="" class="input-xlarge" id="password1" name="password" required>
+											</div>
+										</div>							                            
+										<hr>
+										
+										<div class="actions"><input tabindex="9" class="btn btn-primary large" id="submit1"  type="submit" value="Tạo tài khoản" name="register"></div>
+		
+									</fieldset>
+									
+								</form>	
+		
+							</div>				
+						</div>
+					</section>			
+					<%- include("partials/footer2")  -%> 	
+				

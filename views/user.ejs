@@ -1,0 +1,77 @@
+<% if ( typeof username === 'undefined') { %>
+	 
+    <%- include("partials/header"); %>
+<% } else { %>
+	<%- include("partials/header",{username: username}); %>
+	<% } %>
+	<section class="main-content">		
+		<div class="row">
+			<div class="span5">					
+				<h4 class="title"><span class="text"><strong>Thông tin</strong> cá nhân</span></h4>
+				<form action="/update_user" method="post">
+					<input type="hidden" name="next" value="/">
+					<fieldset>
+						
+							
+						 
+						<div class="control-group">
+							<label class="control-label">Họ và tên:</label>
+							<div class="controls">
+								<input type="value"  class="output-xlarge" name="name" id="name" value="<%= user_info.name %>" placeholder="<%= user.name %> ">
+							</div>
+						</div>
+						
+						
+							
+						<div class="control-group">
+							<label class="control-label">Email:</label>
+							<div class="controls">
+								<input type="value"  class="output-xlarge" name="email" id="address" value="<%= user_info.email %>" placeholder="<%= user.email %>" >
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">SDT:</label>
+							<div class="controls">
+								<input type="value"  class="output-xlarge" name="phone" id="address" placeholder="<%= user_info.phone %>" value="<%= user_info.phone %>">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">Giới tính:</label>
+							<div class="controls">
+								<input type="radio" name="gender" value="male"> &nbsp;Nam
+                                <input type="radio" name="gender" value="female"> &nbsp;Nữ
+								<input type="radio" name="gender" id="" value="other">&nbsp;Khác
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">Địa chỉ:</label>
+							<div class="controls">
+								<textarea name="address" id="" cols="30" rows="10" ><%= user_info.address %>  </textarea>
+								
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">Ngày sinh:</label>
+							<div class="controls">
+								<input type="date" name="dob"  id="birthdayDate" value="<%= user_info.dob %>" />
+								
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<input tabindex="3" class="btn btn-primary large" type="submit" id="submit"  value="Thay đổi thông tin tài khoản" name="change">
+							
+							
+							<hr>
+						</div>
+					</fieldset>
+				
+					
+				</form>	
+				<a href="http:/logout"><input tabindex="3" class="btn btn-primary large" type="submit" id="submit"  value="Đăng xuất" name="logout"></a>
+				<a href="/change_pass"><input tabindex="3" class="btn btn-primary large" type="submit" id="submit"  value="Đổi mật khẩu" name="chang_pass"></a>		
+
+			</div>				
+		</div>
+	</section>			
+	<%- include("partials/footer2") %> 	

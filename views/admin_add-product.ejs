@@ -1,0 +1,159 @@
+<%- include("admin_partials/header2") %> 
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Thêm sản phẩm</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="/admin/add_product" class="tm-edit-product-form" method="post" enctype="multipart/form-data" >
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Tên 
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      >Danh mục</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category"
+                      name="category"
+                    >
+                      <option selected>Chọn danh mục</option>
+                      <% category.forEach(element => { %> 
+                        <option value="<%= element._id %>"><%= element.name %> </option>
+                        <%}); %> 
+                      
+                     
+                    </select>
+                  </div>
+                  <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="expire_date"
+                            >Bảo hành
+                          </label>
+                          <input
+                            name="insurance"
+                            type="text"
+                            class="form-control validate"
+                            data-large-mode="true"
+                          />
+                        </div>
+                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="stock"
+                            >Xuất xứ
+                          </label>
+                          <input
+                            id="stock"
+                            name="origin"
+                            type="text"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                        <label
+                          for="expire_date"
+                          >Cân nặng
+                        </label>
+                        <input
+                          name="weight"
+                          type="text"
+                          class="form-control validate"
+                          data-large-mode="true"
+                        />
+                      </div>
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                        <label
+                          for="stock"
+                          >Giá tiền
+                        </label>
+                        <input
+                          id="stock"
+                          name="price"
+                          type="text"
+                          class="form-control validate"
+                          required
+                        />
+                      </div>
+                </div>
+                  
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div style="border: 1px solid black; width: 255px; height: 255px; position: absolute; top: 55%; left: 50%; transform: translate(-50%,-50%);" class="row">
+                <img class="tm-product-img-dummy mx-auto">
+                  
+                </img>
+              </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input name="image" id="file" type="file" style="display:none;"/>
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="Tải ảnh sản phẩm"
+                    onclick="document.getElementById('file').click();"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Thêm sản phẩm</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="tm-footer row tm-mt-small">
+        <div class="col-12 font-weight-light">
+          <p class="text-center text-white mb-0 px-4 small">
+            Copyright &copy; <b>2022</b> All rights reserved. 
+            
+            Design: <a rel="nofollow noopener" href="https://www.facebook.com/huy.khuc.752" class="tm-footer-link">Thừa Huy</a>
+        </p>
+        </div>
+    </footer> 
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+    <!-- https://jqueryui.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+
+  <script>
+    window.addEventListener('load', function() {
+  document.querySelector('input[type="file"]').addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+          var img = document.querySelector('img');
+          img.onload = () => {
+              URL.revokeObjectURL(img.src);  // no longer needed, free memory
+          }
+
+          img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+      }
+  });
+});
+
+ </script>
+  </body>
+</html>
